@@ -8,9 +8,9 @@ sequenceDiagram
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     Note right of browser: The browser gets the data from the form and makes and POST request
+    Note right of server: Server parses POST data and add it into the db
     server-->>browser: HTML document
     deactivate server
-    Note right of server: Server parses POST data and add it into the db
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
