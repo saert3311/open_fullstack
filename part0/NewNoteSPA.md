@@ -13,7 +13,7 @@ sequenceDiagram
     browser->>server: XMLHttpRequest POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
     activate server
     Note right of server: Server parses POST data and add it into the db
-    server-->>browser: XMLHttpRequest Result
+    server-->>browser: JSON Result
     deactivate server
 
     Note right of browser: The browser logs result into console
