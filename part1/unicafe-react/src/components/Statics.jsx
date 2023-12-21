@@ -1,3 +1,5 @@
+import Static from "./Static";
+
 function Statatics({ good, neutral, bad }) {
     //maybe its hard to read the functions? 
   const average = (() => (good - bad) / (good + neutral + bad))();
@@ -11,12 +13,12 @@ function Statatics({ good, neutral, bad }) {
         return (
             <>
               <h1>Statics</h1>
-              <p>good: {good}</p>
-              <p>neutral: {neutral}</p>
-              <p>bad: {bad}</p>
-              <p>all: {good + neutral + bad}</p>
-              <p>average: {average}</p>
-              <p>positive: {positive}</p>
+              <Static text='Good' value={good} />
+              <Static text='Neutral' value={neutral} />
+              <Static text='Bad' value={bad} />
+              <Static text='All' value={good + neutral + bad} />
+              <Static text='Average' value={average} />
+              <Static text='Positive' value={positive} />
             </>
           );
     }
