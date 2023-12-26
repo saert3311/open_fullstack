@@ -19,32 +19,32 @@ const App = () => {
     return Math.floor(Math.random() * maxNum);
   }
 
+  const maxVotes = () => Object.keys(votes).reduce((a, b) => votes[a] > votes[b] ? a : b, null);
+
   const handleClick = () => {
-    const result = randomInteger(anecdotes.length)
-    setSelected(result)
+    let  result = null
+    do {
+      result = randomInteger(anecdotes.length)
+    } while (result === selected);
+      setSelected(result)
   }
 
   const handleVote = () => {
-    if(selected in votes){
-    const newVote = votes[selected] + 1
-    const rest = votes.filter((vote) => vote.id != selected)
-    const voteObj = {}
-    voteObj[selected] = newVote
-    const newVotes = {...voteObj, ...rest}
-    setVotes(newVotes)
-    } else {
-    const newVotes = {...votes}
-    newVotes[selected] = 1
-    setVotes(newVotes)
-    }
+    setVotes({
+      ...votes,
+      [selected]: (votes[selected] || 0) + 1,
+    });
   }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <button type='button' onClick={handleVote}>Vote</button>
       <button type='button' onClick={handleClick}>Next</button>
       <p>has {votes[selected] ?? 0} votes</p>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[maxVotes()] ?? 'No votes'}</p>
     </div>
   )
 }
